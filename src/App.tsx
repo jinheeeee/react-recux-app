@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
+type Props = {
+  value: any;
+  onIncrement: () => void;
+  onDecrement: () => void;
+};
+
+function App({ value, onIncrement, onDecrement }: Props) {
+  const [todoValue, setTodoValue] = useState("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodoValue(e.target.value);
+  };
+
+  const addTodo = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    setTodoValue("");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Clicked: {value} times */}
+      <button onClick={onIncrement}>+</button>
+      <button onClick={onDecrement}>-</button>
+
+      <form onSubmit={addTodo}>
+        <input type="text" value={todoValue} onChange={handleChange} />
+        <input type="submit" />
+      </form>
     </div>
   );
 }
