@@ -14,16 +14,15 @@ const root = ReactDOM.createRoot(
 
 const store = createStore(counter);
 
-store.dispatch({
-  type: "ADD_TODO",
-  text: "USE REDUX",
-});
-
 /* 
   Provider란?
   Redux Store 저장소에서 엑세스해야 하는 모든 중첩 구성 요소에서 Redux Store 
   저장소를 사용할 수 있도록 합니다.
+
+  * useSelector hooks를 이용해서 스토어의 값을 가져올 수 있음
+  * useDispatch -> store에 있는 dispatch 함수에 접근하는 hooks
 */
+
 
 const render = () =>
   root.render(
